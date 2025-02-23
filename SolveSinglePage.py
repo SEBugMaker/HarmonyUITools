@@ -219,6 +219,17 @@ def matchResource(filepath,new_filepath,foldername):
                         text = text.replace(f"$r('{match}')", '"'+item['value']+'"')
                         print("替换成功")
                         print("-" * 20)
+        elif parts[1] == 'float':
+            absolutePath = ResourcePath + '/element/float.json'
+            print(f"打开{absolutePath}")
+            with open(absolutePath, 'r', encoding='utf-8') as json_file:
+                data = json.load(json_file)
+                for item in data['float']:
+                    if item['name'] == parts[2]:
+                        print("找到对应value: "+item['value'])
+                        text = text.replace(f"$r('{match}')", '"'+item['value']+'"')
+                        print("替换成功")
+                        print("-" * 20)
         # 清空文件内容
         with open(new_filepath, 'w', encoding='utf-8') as file:
             file.write('')
